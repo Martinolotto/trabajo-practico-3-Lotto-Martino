@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body bg-light>
+    <header>
+      
+    </header>
+    <nav class="navbar navbar-dark bg-dark mb-4">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Los Simpson API</span>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row mb-4">
+    <div class="col-md-8 offset-md-2">
+      <div class="input-group">
+        <input type="text" id="input-busqueda" class="form-control" placeholder="Buscar personaje por nombre...">
+        <button class="btn btn-warning" type="button" id="btn-buscar">Buscar</button>
+      </div>
+      <div id="mensaje-error" class="text-danger mt-2 d-none">No se encontraron resultados.</div>
+    </div>
+  </div>
+
+  <div id="contenedor-personajes" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+  </div>
+</div>
+
+    <script src="assets/js/app.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
