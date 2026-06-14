@@ -1,0 +1,41 @@
+
+body {
+    background-color: #FFFDE7;
+    background-image: url(../img/wp4267646-springfield-wallpapers.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;;
+}
+
+.card {
+    transition: transform 0.2s ease;
+    border-radius: 12px;
+}
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.card-img-top {
+    border-radius: 12px 12px 0 0;
+    background-color: #FFF9E6;
+}
+.btn-detalle {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* Navbar*/
+.navbar {
+    background-color: #1A2A4A !important;
+    border-bottom: 3px solid #FFC107;
+}
+
+.navbar-brand {
+    color: #FED90F !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.navbar {
+    border-bottom: 3px solid #FFC107;
+}
