@@ -42,7 +42,7 @@ function renderizarTarjetas(arregloPersonajes) {
                             <strong>Estado:</strong> ${personaje.status}
                         </p>
                         <button class="btn btn-warning mt-auto btn-detalle"
-                                data-id="${personaje._id}">
+                                data-id="${personaje.id}">
                             Ver detalle
                         </button>
                     </div>
@@ -97,5 +97,76 @@ btnBuscar.addEventListener("click", filtrarPersonajes);
 inputBusqueda.addEventListener("keydown", (evento) => {
     if (evento.key === "Enter") {
         filtrarPersonajes();
+    }
+});
+
+//=========
+
+//funcion asincrona 
+async function obtenerDetallePersonaje(idPersonaje) {
+    try {
+        const respuesta = await fetch(`${urlDetalle}${idPersonaje}`);
+        const datosJSON = await respuesta.json();
+
+        return datosJSON;
+
+    } catch (error) {
+        console.error("Error al obtener el detalle del personaje:", error);
+    }
+}
+
+//mostrar modal
+//recibe los datos de un personaje y los muestra dentro del modal
+
+function mostrarModal(personaje) {
+
+    // Referencias a los elementos del modal
+    const modalTitulo = document.getElementById("modalDetalleLabel");
+    const modalImagen = document.getElementById("modal-imagen");
+    const modalEdad = document.getElementById("modal-edad");
+    const modalNacimiento = document.getElementById("modal-nacimiento");
+    const modalGenero = document.getElementById("modal-genero");
+    const modalOcupacion = document.getElementById("modal-ocupacion");
+    const modalEstado = document.getElementById("modal-estado");
+    const modalFrase = document.getElementById("modal-frase");
+
+    
+    const urlImagen = `https://cdn.thesimpsonsapi.com/500${personaje.portrait_path}`;
+    
+    // rellenar elementos con los datos 
+    modalTitulo.textContent = personaje.name;
+    modalImagen.src = urlImagen;
+    modalImagen.alt = personaje.name;
+    modalEdad.textContent = personaje.age;
+    modalNacimiento.textContent = personaje.birthdate;
+    modalGenero.textContent = personaje.gender;
+    modalOcupacion.textContent = personaje.occupation;
+    modalEstado.textContent = personaje.status;
+
+    if (personaje.phrases && personaje.phrases.length > 0) {
+        modalFrase.textContent = `"${personaje.phrases[0]}"`;
+    } else {
+        modalFrase.textContent = "";
+    }
+    
+    const modal = new bootstrap.Modal(document.getElementById("modalDetalle"));
+    modal.show();
+}
+
+//evento click en ver detalle 
+contenedorPersonajes.addEventListener("click", async (evento) => {
+
+    if (evento.target.classList.contains("btn-detalle")) {
+
+        // se lee el id del personaje de data id 
+        const idPersonaje = evento.target.dataset.id;
+
+        //pide datos a la api
+        const personaje = await obtenerDetallePersonaje(idPersonaje);
+
+        // si la respuest es valida se muestra el modal
+        if (personaje) {
+            mostrarModal(personaje);
+        }
     }
 });
