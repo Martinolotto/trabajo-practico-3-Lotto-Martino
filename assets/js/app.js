@@ -152,3 +152,21 @@ function mostrarModal(personaje) {
     const modal = new bootstrap.Modal(document.getElementById("modalDetalle"));
     modal.show();
 }
+
+//evento click en ver detalle 
+contenedorPersonajes.addEventListener("click", async (evento) => {
+
+    if (evento.target.classList.contains("btn-detalle")) {
+
+        // se lee el id del personaje de data id 
+        const idPersonaje = evento.target.dataset.id;
+
+        //pide datos a la api
+        const personaje = await obtenerDetallePersonaje(idPersonaje);
+
+        // si la respuest es valida se muestra el modal
+        if (personaje) {
+            mostrarModal(personaje);
+        }
+    }
+});
