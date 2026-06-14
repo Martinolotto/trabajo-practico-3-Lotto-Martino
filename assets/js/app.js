@@ -69,3 +69,33 @@ async function obtenerPersonajes() {
 }
 
 obtenerPersonajes();
+
+//logica de filtrado 
+function filtrarPersonajes() {
+    const textoBusqueda = inputBusqueda.value.trim().toLowerCase();
+
+    // si el campo estavacío  se muestra todo el listado
+    if (textoBusqueda === "") {
+        renderizarTarjetas(personajesGlobal);
+        return;
+    }
+
+    const personajesFiltrados = personajesGlobal.filter((personaje) => {
+        return personaje.name.toLowerCase().includes(textoBusqueda);
+    });
+
+    renderizarTarjetas(personajesFiltrados);
+}
+
+
+// eventos del buscador 
+
+// click
+btnBuscar.addEventListener("click", filtrarPersonajes);
+
+// buscar presionando enter
+inputBusqueda.addEventListener("keydown", (evento) => {
+    if (evento.key === "Enter") {
+        filtrarPersonajes();
+    }
+});
