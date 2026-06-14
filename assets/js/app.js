@@ -99,3 +99,16 @@ inputBusqueda.addEventListener("keydown", (evento) => {
         filtrarPersonajes();
     }
 });
+
+//funcion asincrona 
+async function obtenerDetallePersonaje(idPersonaje) {
+    try {
+        const respuesta = await fetch(`${urlDetalle}${idPersonaje}`);
+        const datosJSON = await respuesta.json();
+
+        return datosJSON;
+
+    } catch (error) {
+        console.error("Error al obtener el detalle del personaje:", error);
+    }
+}
